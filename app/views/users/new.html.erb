@@ -1,0 +1,25 @@
+<h1>Create your new user below</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.label :name %>:
+  <%= f.text_field :name, placeholder: "Name" %> <br />
+
+  <%= f.label :email %>:
+  <%= f.text_field :email, placeholder: "Email" %> <br />
+
+  <%= f.label :password %>:
+  <%= f.password_field :password, placeholder: "Password" %> <br />
+
+  <%= f.label :password_confirmation %>:
+  <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %> <br />
+
+  <%= f.submit %>
+<% end %>
+<!-- end of form -->
+<%= link_to 'Back', :back %> <!--back button vvvv flash messages below -->
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+  <p><%= error %></p>
+  <% end %>
+<% end %>

@@ -1,0 +1,10 @@
+<%= session[:user_id] %> is Logged in!
+<h1>Wassup Bro!</h1>
+<a href="/sessions/<%=session[:user_id]%>" data-method="DELETE">Logout</a>
+
+<%= link_to 'Create a new Secret!', new_secret_path %>
+
+<% @secret.each do |secret| %>
+  <%= secret %>
+
+<% end %>

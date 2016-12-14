@@ -1,0 +1,29 @@
+<%= session[:user_id] %> is Logged in!
+<div id="top_nav">
+<%= link_to 'See your secrets', user_path(session[:user_id]) %>
+</div>
+<h1>Wassup Bro!</h1>
+<a href="/sessions/<%=session[:user_id]%>" data-method="DELETE">Logout</a>
+
+<%= link_to 'Create a new Secret!', new_secret_path %>
+
+<% @secret.each do |secret| %>
+  <p><%= secret.content %></p>
+  <p><%= secret.likes.count %></p>
+<!-- if statement will show unlike if it has already been liked by that user-->
+  <% if secret.users_liked.include?(@user)%>
+    <form action='/likes/<%= secret.id %>' method='post'>
+      <input type='hidden' name='_method' value='delete'>
+      <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+      <input type='submit' value='Unlike'>
+    </form>
+
+  <% else %>
+    <p><form action="/likes" method="post">
+      <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+      <input type="hidden" name="secret[id]" value="<%= secret.id %>">
+      <input type="submit" value="like">
+    </form>
+    </p>
+  <% end %>
+<% end %>

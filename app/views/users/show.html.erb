@@ -1,0 +1,8 @@
+<h1>Here are your deep dark secrets...</h1>
+<% @secret.each do |secret|%>
+  <p><%= secret.content %></p>
+  <p>
+    <a href="/secrets/<%= secret.id %>" data-method="delete">Delete Secret</a>
+  </p>
+<% end %>
+<%= link_to 'Home', users_path %>
